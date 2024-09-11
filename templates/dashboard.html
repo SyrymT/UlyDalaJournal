@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>
+    
+    <h2>User Profile</h2>
+    <p>Name: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Affiliation: {{ user.affiliation }}</p>
+    <p>Research Interests: {{ user.research_interests }}</p>
+    <a href="{{ url_for('edit_profile') }}">Edit Profile</a>
+    
+    <h2>Submitted Articles</h2>
+    <ul>
+        {% for article in submitted_articles %}
+            <li>
+                <a href="{{ url_for('view_article', article_id=article.id) }}">{{ article.title }}</a>
+                <p>Submission Date: {{ article.submission_date }}</p>
+                <p>Status: {{ article.status }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Published Articles</h2>
+    <ul>
+        {% for article in published_articles %}
+            <li>
+                <a href="{{ url_for('view_article', article_id=article.id) }}">{{ article.title }}</a>
+                <p>Publication Date: {{ article.publication_date }}</p>
+                <p>Citations: {{ article.citations }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Notifications</h2>
+    <!-- Display notifications -->
+    
+    <h2>Review Assignments</h2>
+    <!-- Display review assignments -->
+    
+    <h2>Author Dashboard</h2>
+    <!-- Display author dashboard summary -->
+    
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

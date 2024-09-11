@@ -17,6 +17,13 @@
     </li>
     {% endfor %}
 </ul>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Current Issue</h1>
+    <!-- Add content for the current issue page -->
+{% endblock %}
 {% else %}
 <p>No current issue available.</p>
 {% endif %}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+    
+    <!-- Rest of your home page content -->
+    
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

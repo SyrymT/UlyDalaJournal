@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uly Dala - {% block title %}{% endblock %}</title>
+    <title>{% block title %}Uly Dala Journal{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% if form is defined %}
+        {{ form.csrf_token }}
+    {% endif %}
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        .footer {
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -22,18 +38,53 @@
             <li><a href="{{ url_for('archive') }}">Archive</a></li>
             <li><a href="{{ url_for('submit_article') }}">Submit Article</a></li>
             <li><a href="{{ url_for('for_authors') }}">For Authors</a></li>
-            <li><a href="{{ url_for('for_reviewers') }}">For Reviewers</a></li>
             <li><a href="{{ url_for('for_readers') }}">For Readers</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('my_submissions') }}">My Submissions</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
         </ul>
     </nav>
 
     <main class="container mt-4">
+        <div class="alert alert-info">
+            Debug Info:
+            Is authenticated: {{ current_user.is_authenticated }}
+            {% if current_user.is_authenticated %}
+                User ID: {{ current_user.id }}
+                Username: {{ current_user.username }}
+                Full Name: {{ current_user.full_name }}
+            {% endif %}
+            Session: {{ session }}
+        </div>
+
+        {% if current_user.is_authenticated %}
+            <div class="alert alert-success">
+                Welcome, {{ current_user.full_name }}!
+            </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2023 Uly Dala. All rights reserved.</p>
+    {% if request.path == '/' %}
+    <footer class="footer mt-4 py-3 bg-light">
+        <div class="container text-center">
+            <p>&copy; 2023 Uly Dala. All rights reserved.</p>
+        </div>
     </footer>
+    {% endif %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -41,3 +92,35 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+<nav class="nav-menu">
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        {% if 'current_issue' in app.view_functions %}
+            <li><a href="{{ url_for('current_issue') }}">Current Issue</a></li>
+        {% endif %}
+        {% if 'archive' in app.view_functions %}
+            <li><a href="{{ url_for('archive') }}">Archive</a></li>
+        {% endif %}
+        {% if 'submit_article' in app.view_functions %}
+            <li><a href="{{ url_for('submit_article') }}">Submit Article</a></li>
+        {% endif %}
+        {% if 'for_authors' in app.view_functions %}
+            <li><a href="{{ url_for('for_authors') }}">For Authors</a></li>
+        {% endif %}
+        {% if 'for_reviewers' in app.view_functions %}
+            <li><a href="{{ url_for('for_reviewers') }}">For Reviewers</a></li>
+        {% endif %}
+        {% if 'for_readers' in app.view_functions %}
+            <li><a href="{{ url_for('for_readers') }}">For Readers</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            {% if 'my_submissions' in app.view_functions %}
+                <li><a href="{{ url_for('my_submissions') }}">My Submissions</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>

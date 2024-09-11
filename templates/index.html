@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
-
 {% block content %}
-<h2>Welcome to Uly Dala</h2>
-<p>Uly Dala is a comprehensive academic journal dedicated to advancing knowledge in various fields. Our mission is to publish high-quality, peer-reviewed research that contributes to the academic community and beyond.</p>
-
-<h3>Latest Articles</h3>
-<ul>
-    {% for article in latest_articles %}
-    <li><a href="{{ url_for('article', article_id=article.id) }}">{{ article.title }}</a> by {{ article.authors }}</li>
-    {% endfor %}
-</ul>
-
-<h3>Announcements</h3>
-<ul>
-    <li>Call for Papers: Special Issue on Climate Change - Deadline: September 1, 2023</li>
-    <li>Uly Dala now indexed in Scopus and Web of Science</li>
-</ul>
+    <h1>Welcome to Uly Dala Journal</h1>
+    
+    {% if latest_articles %}
+        <h2>Latest Articles</h2>
+        <ul>
+        {% for article in latest_articles %}
+            <li>
+                <a href="{{ url_for('article', article_id=article.id) }}">{{ article.title }}</a>
+                by {{ article.authors }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles available at the moment.</p>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Article</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>Authors: {{ article.authors }}</p>
+    <p>Abstract: {{ article.abstract }}</p>
+    <p>Keywords: {{ article.keywords }}</p>
+    <p>Publication Date: {{ article.publication_date }}</p>
+    <p>Issue: Volume {{ article.issue.volume }}, Number {{ article.issue.number }}, Year {{ article.issue.year }}</p>
+    <a href="{{ url_for('download_article', article_id=article.id) }}">Download PDF</a>
+</body>
+</html>

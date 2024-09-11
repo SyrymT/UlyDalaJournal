@@ -7,6 +7,11 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    full_name = StringField('Full Name', validators=[DataRequired(), Length(max=100)])
+    affiliation = StringField('Affiliation', validators=[DataRequired(), Length(max=200)])
+    research_interests = StringField('Research Interests', validators=[DataRequired(), Length(max=200)])
+    bio = TextAreaField('Brief Bio', validators=[DataRequired(), Length(max=500)])
+    orcid = StringField('ORCID ID', validators=[Length(max=20)])
     submit = SubmitField('Sign Up')
 
 class ArticleSubmissionForm(FlaskForm):

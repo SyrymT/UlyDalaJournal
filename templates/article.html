@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ article.title }}</h2>
+<p><strong>Authors:</strong> {{ article.authors }}</p>
+<p><strong>Keywords:</strong> {{ article.keywords }}</p>
+<h3>Abstract</h3>
+<p>{{ article.abstract }}</p>
+<p><a href="{{ article.pdf_path }}" target="_blank" class="btn btn-primary">Download PDF</a></p>
+{% endblock %}

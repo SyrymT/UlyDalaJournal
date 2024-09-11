@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}For Readers{% endblock %}
+
+{% block content %}
+<h2>Information for Readers</h2>
+<h3>Access to Articles</h3>
+<p>All articles published in Uly Dala are freely available to read and download. No subscription is required.</p>
+
+<h3>Citation Information</h3>
+<p>When citing articles from Uly Dala, please use the following format:</p>
+<pre>
+Author, A. A., & Author, B. B. (Year). Title of article. Uly Dala, Volume(Issue), page range. DOI
+</pre>
+
+<h3>RSS Feed</h3>
+<p>Stay updated with the latest articles by subscribing to our RSS feed: <a href="#">Uly Dala RSS Feed</a></p>
+
+<h3>Email Alerts</h3>
+<p>Sign up for email alerts to receive notifications about new issues and articles:</p>
+<form>
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+</form>
+{% endblock %}

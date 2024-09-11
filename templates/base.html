@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uly Dala - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Uly Dala Logo" class="logo">
+        <h1>Uly Dala</h1>
+        <p>ISSN: 1234-5678</p>
+        <img src="{{ url_for('static', filename='img/publisher_logo.svg') }}" alt="Publisher Logo" class="logo">
+    </header>
+
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('current_issue') }}">Current Issue</a></li>
+            <li><a href="{{ url_for('archive') }}">Archive</a></li>
+            <li><a href="{{ url_for('submit_article') }}">Submit Article</a></li>
+            <li><a href="{{ url_for('for_authors') }}">For Authors</a></li>
+            <li><a href="{{ url_for('for_reviewers') }}">For Reviewers</a></li>
+            <li><a href="{{ url_for('for_readers') }}">For Readers</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 Uly Dala. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

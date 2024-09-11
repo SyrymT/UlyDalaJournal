@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}For Authors{% endblock %}
+
+{% block content %}
+<h2>Information for Authors</h2>
+<h3>Submission Guidelines</h3>
+<ul>
+    <li>Manuscripts should be submitted in PDF format.</li>
+    <li>The maximum length for articles is 8,000 words, including references.</li>
+    <li>Use APA style for citations and references.</li>
+    <li>Include an abstract of no more than 250 words.</li>
+    <li>Provide 3-5 keywords that best describe your article.</li>
+</ul>
+
+<h3>Review Process</h3>
+<p>All submitted articles undergo a double-blind peer review process. The typical timeframe for the review process is 4-6 weeks.</p>
+
+<h3>Publication Fees</h3>
+<p>There are no submission or publication fees for Uly Dala.</p>
+
+<h3>Copyright</h3>
+<p>Authors retain copyright of their work but grant Uly Dala the right to publish and distribute the article.</p>
+
+<a href="{{ url_for('submit_article') }}" class="btn btn-primary">Submit an Article</a>
+{% endblock %}
